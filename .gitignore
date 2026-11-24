@@ -1,0 +1,78 @@
+# ============================================================================
+# SECURITY-CRITICAL: These patterns MUST NEVER be committed.
+# They may contain OAuth tokens, client secrets, or Adobe IMS credentials.
+# ============================================================================
+
+# Runtime config of each user (contains tokens + client_id + client_secret)
+config.json
+config*.json
+!config.example.json
+
+# Local secret/token stores
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+cacert.pem
+secrets/
+credentials/
+.tokens/
+
+# User-specific resolve_frameio folder if it ever lands in the repo
+.resolve_frameio/
+resolve_frameio/
+
+# Logs (may contain tokens in tracebacks)
+*.log
+trigger.log
+gui.log
+
+# Rendered outputs
+*.mp4
+*.mov
+*.wav
+*.aac
+
+# ============================================================================
+# Python
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+
+# ============================================================================
+# OS
+# ============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================================================
+# IDEs
+# ============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# DaVinci Resolve
+# ============================================================================
+*.drp
+*.drb
+*.drt
+Resolve_Project_Backup/

@@ -1,0 +1,19 @@
+{
+  "_comment_1": "Example of the file that will live at ~/.resolve_frameio/config.json",
+  "_comment_2": "You DO NOT create this file by hand — it is written by the script after you complete OAuth.",
+  "_comment_3": "Shown here only so you know what the format looks like.",
+
+  "client_id":     "<YOUR_ADOBE_CLIENT_ID_HERE>",
+  "client_secret": "<YOUR_ADOBE_CLIENT_SECRET_HERE>",
+  "redirect_uri":  "https://localhost:8765/callback",
+
+  "access_token":  "<ADDED_AUTOMATICALLY_AFTER_LOGIN>",
+  "refresh_token": "<ADDED_AUTOMATICALLY_AFTER_LOGIN>",
+  "expires_at":    0,
+
+  "last_workspace_id": null,
+  "last_project_id":   null,
+  "last_folder_id":    null,
+  "last_preset":       null,
+  "last_comment_file_id": null
+}

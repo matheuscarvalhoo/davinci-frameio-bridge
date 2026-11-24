@@ -1,0 +1,64 @@
+name: Security scan
+
+# Blocks any PR / push that contains credential-shaped strings, and also runs
+# the well-known third-party tools on the full history.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: "0 7 * * 1"   # weekly Monday 07:00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  secret-scan:
+    name: Secret & vulnerability scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (full history for Gitleaks)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run local grep-based scanner
+        run: |
+          bash scripts/scan-secrets.sh
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # No GITLEAKS_LICENSE required for public repos
+          config-path: .github/gitleaks.toml
+
+      - name: TruffleHog (verified only)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bandit (Python SAST)
+        run: |
+          pip install bandit
+          bandit -r src/ -ll --skip B101
+
+      - name: pip-audit (dependency CVE check)
+        run: |
+          pip install pip-audit
+          # No requirements.txt on purpose — this project uses stdlib only.
+          # If that ever changes, add: pip-audit -r requirements.txt
+          echo "No pinned deps to audit (stdlib only)."

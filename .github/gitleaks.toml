@@ -1,0 +1,49 @@
+title = "davinci-frameio-bridge gitleaks config"
+
+[extend]
+useDefault = true
+
+# -----------------------------------------------------------------------------
+# Our own rules — tuned for the exact things this project could leak.
+# -----------------------------------------------------------------------------
+[[rules]]
+id          = "adobe-ims-client-secret"
+description = "Adobe IMS client secret (p8e-/s8e-/p8g- prefix)"
+regex       = '''(?i)(p8e|s8e|p8g)-[A-Za-z0-9_-]{32,}'''
+tags        = ["adobe", "secret"]
+
+[[rules]]
+id          = "frameio-bearer"
+description = "Frame.io bearer token (JWT shaped)"
+regex       = '''eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}'''
+tags        = ["frameio", "jwt"]
+
+[[rules]]
+id          = "client-secret-field"
+description = "JSON field 'client_secret' with a real-looking value"
+regex       = '''"client_secret"\s*:\s*"[A-Za-z0-9_\-]{20,}"'''
+tags        = ["secret"]
+
+[[rules]]
+id          = "refresh-token-field"
+description = "JSON field 'refresh_token' with a real-looking value"
+regex       = '''"refresh_token"\s*:\s*"[A-Za-z0-9_.\-]{20,}"'''
+tags        = ["secret"]
+
+# -----------------------------------------------------------------------------
+# Allowlist (placeholders in examples / docs)
+# -----------------------------------------------------------------------------
+[allowlist]
+description = "Known placeholders"
+paths = [
+  '''config\.example\.json$''',
+  '''SECURITY\.md$''',
+  '''README\.md$''',
+  '''docs/.*''',
+]
+regexes = [
+  '''<YOUR_ADOBE_CLIENT_ID_HERE>''',
+  '''<YOUR_ADOBE_CLIENT_SECRET_HERE>''',
+  '''<ADDED_AUTOMATICALLY_AFTER_LOGIN>''',
+  '''XXXXXXXXXXXX''',
+]

@@ -1,0 +1,50 @@
+davinci-frameio-bridge
+Copyright (C) 2026 Marrk
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+
+The full text of the license is in the file LICENSE at the repository root.
+
+--------------------------------------------------------------------------------
+Attribution
+--------------------------------------------------------------------------------
+
+This software was originally created by Marrk.
+
+If you use, redistribute or build on top of this software — including forks,
+modifications and derived works — you must:
+
+  1. Keep this copyright notice and the authorship credit to Marrk in a
+     visible place (README, About dialog, credits file, etc.).
+  2. Release your derived work under the same GPL-3.0-or-later license and
+     keep the full source code available to its users (that is a GPL
+     requirement, not just a request).
+  3. Clearly state what you changed, if anything (also a GPL requirement).
+
+If you want to use parts of this code in a proprietary / closed-source product
+you need a separate commercial license from the author — open a discussion on
+the GitHub repository to talk about it.
+
+--------------------------------------------------------------------------------
+Third-party notices
+--------------------------------------------------------------------------------
+
+This project uses the following services / APIs, each subject to their own
+terms. It is not affiliated with, endorsed or sponsored by them:
+
+  * Frame.io V4 REST API — https://developer.frame.io/
+  * Adobe IMS OAuth 2.0 — https://developer.adobe.com/
+  * Blackmagic Design DaVinci Resolve scripting API
+
+"Adobe", "Frame.io", "DaVinci Resolve" and related names are trademarks of
+their respective owners.
